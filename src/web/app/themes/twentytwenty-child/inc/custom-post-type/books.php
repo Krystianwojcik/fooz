@@ -43,7 +43,7 @@ if ( ! function_exists('books_post_type') ) {
             'label'                 => __( 'Book', 'text_domain' ),
             'description'           => __( 'Post Type Description', 'text_domain' ),
             'labels'                => $labels,
-            'supports'              => array( 'title', 'editor' ),
+            'supports'              => array( 'title', 'editor', 'thumbnail' ),
             'hierarchical'          => false,
             'public'                => true,
             'show_ui'               => true,

@@ -29,7 +29,7 @@ if ( ! function_exists( 'genre_taxonomy' ) ) {
         $rewrite = array(
             'slug'                       => 'book-genre',
             'with_front'                 => true,
-            'hierarchical'               => false,
+            'hierarchical'               => true,
         );
         $args = array(
             'labels'                     => $labels,
@@ -40,8 +40,9 @@ if ( ! function_exists( 'genre_taxonomy' ) ) {
             'show_in_nav_menus'          => true,
             'show_tagcloud'              => true,
             'rewrite'                    => $rewrite,
+            'show_in_rest' => true,
         );
-        register_taxonomy( 'taxonomy', array( 'books' ), $args );
+        register_taxonomy( 'book-genre', array( 'books' ), $args );
 
     }
     add_action( 'init', 'genre_taxonomy', 0 );

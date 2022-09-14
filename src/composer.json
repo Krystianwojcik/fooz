@@ -39,7 +39,7 @@
     "roots/wordpress": "^6.0.0",
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.0.0",
-    "wpackagist-plugin/advanced-custom-fields": "^5.10",
+    "wpackagist-plugin/duplicate-post": "^4.5",
     "wpackagist-theme/twentytwenty": "^2.0"
   },
   "require-dev": {

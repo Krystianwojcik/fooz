@@ -29,7 +29,7 @@ if ( ! function_exists( 'genre_taxonomy' ) ) {
         $rewrite = array(
             'slug'                       => 'book-genre',
             'with_front'                 => true,
-            'hierarchical'               => false,
+            'hierarchical'               => true,
         );
         $args = array(
             'labels'                     => $labels,
@@ -40,10 +40,26 @@ if ( ! function_exists( 'genre_taxonomy' ) ) {
             'show_in_nav_menus'          => true,
             'show_tagcloud'              => true,
             'rewrite'                    => $rewrite,
+            'show_in_rest' => true,
         );
-        register_taxonomy( 'taxonomy', array( 'books' ), $args );
+        register_taxonomy( 'book-genre', array( 'books' ), $args );
 
     }
     add_action( 'init', 'genre_taxonomy', 0 );
 
+
+    add_filter( 'pre_get_posts', 'book_genre_change_posts_per_page' );
+    /**
+     * Change Posts Per Page for Portfolio Archive.
+     *
+     * @param object $query data
+     *
+     */
+    function book_genre_change_posts_per_page( $query )
+    {
+        if (is_tax('book-genre') && !is_admin() && $query->is_main_query()) :
+            $query->set('posts_per_page', '5');
+            return $query;
+        endif;
+    }
 }

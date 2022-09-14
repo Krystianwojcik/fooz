@@ -47,4 +47,19 @@ if ( ! function_exists( 'genre_taxonomy' ) ) {
     }
     add_action( 'init', 'genre_taxonomy', 0 );
 
+
+    add_filter( 'pre_get_posts', 'book_genre_change_posts_per_page' );
+    /**
+     * Change Posts Per Page for Portfolio Archive.
+     *
+     * @param object $query data
+     *
+     */
+    function book_genre_change_posts_per_page( $query )
+    {
+        if (is_tax('book-genre') && !is_admin() && $query->is_main_query()) :
+            $query->set('posts_per_page', '5');
+            return $query;
+        endif;
+    }
 }
